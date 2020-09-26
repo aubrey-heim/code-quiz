@@ -1,5 +1,6 @@
 var timerEl = document.getElementById("timer")
 var startEl = document.getElementById("start-button")
+var mainEl = document.querySelector("main")
 
 function startTime() {
     var timeLeft = 59;
@@ -26,4 +27,12 @@ function startTime() {
         timeLeft--;
     }, 1000);
 }
-startEl.addEventListener("click", startTime)
+
+function startQuiz() {
+    startTime()
+    mainEl.children[0].textContent = "Question 1"
+    mainEl.children[1].textContent = "this is where the first question would go"
+    mainEl.children[2].textContent = ""
+}
+
+startEl.addEventListener("click", startQuiz)
