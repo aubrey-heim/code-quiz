@@ -2,20 +2,20 @@ var timerEl = document.getElementById("timer")
 var startEl = document.getElementById("start-button")
 var mainEl = document.querySelector("main")
 
-var questionAnswers = [
-    {"question": "What tag is used for a hyperlink?", 
-    "option1": "<link>", 
-    "option2": "<ul>", 
-    "option3": "<p>", 
-    "option4": "<a>",
-    "correct": "<a>" },
-    
+var questionsAndAnswers = [
     {"question": "What is Lorem Ipsum?", 
     "option1": "A coding language", 
     "option2": "A coding accreditation ", 
     "option3": "A traditional placeholder text", 
     "option4": "A well-known coding university",
     "correct": "A traditional placeholder text" },
+    
+    {"question": "What tag is used for a hyperlink?", 
+    "option1": "<link>", 
+    "option2": "<ul>", 
+    "option3": "<p>", 
+    "option4": "<a>",
+    "correct": "<a>" },
     
     {"question": "What special character should be used at the end of every statement?", 
     "option1": "period", 
@@ -63,10 +63,48 @@ function startTime() {
 }
 
 function startQuiz() {
-    startTime()
-    mainEl.children[0].textContent = "Question 1"
-    mainEl.children[1].textContent = "this is where the first question would go"
-    mainEl.children[2].textContent = ""
+    startTime()     
+
+    for (var i=0; i<questionsAndAnswers.length; i++){
+        mainEl.children[0].textContent = "Question " + i+1
+        mainEl.children[1].textContent = questionsAndAnswers[i].question
+        var answerArea = mainEl.children[2]
+        answerArea.textContent = ""
+
+        
+        spaceEl=document.createElement("div")
+        answerEl = document.createElement("button")
+        answerEl.classList.add("my-2", "btn", "btn,lg", "btn-success")
+        answerEl.textContent = questionsAndAnswers[i].option1
+        spaceEl.appendChild(answerEl)
+        answerArea.appendChild(spaceEl)
+
+        spaceEl=document.createElement("div")
+        answerEl = document.createElement("button")
+        answerEl.classList.add("my-2", "btn", "btn,lg", "btn-success")
+        answerEl.textContent = questionsAndAnswers[i].option2
+        spaceEl.appendChild(answerEl)
+        answerArea.appendChild(spaceEl)
+
+        spaceEl=document.createElement("div")
+        answerEl = document.createElement("button")
+        answerEl.classList.add("my-2", "btn", "btn,lg", "btn-success")
+        answerEl.textContent = questionsAndAnswers[i].option3
+        spaceEl.appendChild(answerEl)
+        answerArea.appendChild(spaceEl)
+
+        spaceEl=document.createElement("div")
+        answerEl = document.createElement("button")
+        answerEl.classList.add("my-2", "btn", "btn,lg", "btn-success")
+        answerEl.textContent = questionsAndAnswers[i].option4
+        spaceEl.appendChild(answerEl)
+        answerArea.appendChild(spaceEl)
+
+    
+    
+    }
+
+     
 }
 
 startEl.addEventListener("click", startQuiz)
