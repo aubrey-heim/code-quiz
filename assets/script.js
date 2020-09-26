@@ -1,4 +1,5 @@
 var timerEl = document.getElementById("timer")
+var startEl = document.getElementById("start-button")
 
 function startTime() {
     var timeLeft = 59;
@@ -25,5 +26,4 @@ function startTime() {
         timeLeft--;
     }, 1000);
 }
-
-startTime()
+startEl.addEventListener("click", startTime)
