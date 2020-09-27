@@ -222,12 +222,13 @@ submitButtonEl.addEventListener("click", function(event){
         resultsEl.textContent = "Thank you for submitting your high score!"
         resultsEl.style.color = "green"
         retreivedScores.push(score)
+        scoreFormEl.classList.add("hidden")
     }
 
     localStorage.setItem("recordedScores", JSON.stringify(retreivedScores));
     scoreListItemEl.innerHTML = ""
     showScores()
-    scoreFormEl.classList.add("hidden")
+    
 })
 
 function showScores() {
