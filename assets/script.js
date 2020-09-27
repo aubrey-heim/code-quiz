@@ -1,6 +1,7 @@
 var timerEl = document.getElementById("timer")
 var startEl = document.getElementById("start-button")
 var mainEl = document.querySelector("main")
+var scoreEl = document.getElementById("score")
 
 var questionsAndAnswers = [
     {"question": "What is Lorem Ipsum?", 
@@ -34,10 +35,10 @@ var questionsAndAnswers = [
     
 
 
-
+var timeLeft = 59;
+var scoreReached = 0;
 
 function startTime() {
-    var timeLeft = 59;
     var timeInterval = setInterval(function() {
         timerEl.textContent = "0:" + timeLeft
         
@@ -52,7 +53,7 @@ function startTime() {
             timer.style.color = "white"
         }
 
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
           timerEl.textContent = "0:00";
         //   inputScore();
           clearInterval(timeInterval);
@@ -64,47 +65,39 @@ function startTime() {
 
 function startQuiz() {
     startTime()     
+    scoreEl.textContent = "Score: " + scoreReached
 
     for (var i=0; i<questionsAndAnswers.length; i++){
+
         mainEl.children[0].textContent = "Question " + i+1
         mainEl.children[1].textContent = questionsAndAnswers[i].question
-        var answerArea = mainEl.children[2]
+        let answerArea = mainEl.children[2]
         answerArea.textContent = ""
-
+        var correctAnswer = questionsAndAnswers[i].correct
         
-        spaceEl=document.createElement("div")
-        answerEl = document.createElement("button")
-        answerEl.classList.add("my-2", "btn", "btn,lg", "btn-success")
-        answerEl.textContent = questionsAndAnswers[i].option1
-        spaceEl.appendChild(answerEl)
-        answerArea.appendChild(spaceEl)
+           var answers = Object.values(questionsAndAnswers[0])
+           
+            for (var j=1; j<5;j++){
+                answerEl = document.createElement("button")
+                answerEl.style.boxDecorationBreak
+                answerEl.classList.add("mx-2", "btn", "btn,lg", "btn-success", "answer-button")
+                answerEl.textContent = answers[j]
+                answerArea.appendChild(answerEl)
+            }
 
-        spaceEl=document.createElement("div")
-        answerEl = document.createElement("button")
-        answerEl.classList.add("my-2", "btn", "btn,lg", "btn-success")
-        answerEl.textContent = questionsAndAnswers[i].option2
-        spaceEl.appendChild(answerEl)
-        answerArea.appendChild(spaceEl)
+        document.addEventListener("click", function(event){
+            if (event.target.matches(".answer-button") && event.target.textContent === correctAnswer){
+                event.preventDefault
+                alert("Correct!")
+            } else if (event.target.matches(".answer-button")){
+                event.preventDefault
+                alert("Incorrect!")
+                timeLeft = timeLeft - 5
+            }
+        })
 
-        spaceEl=document.createElement("div")
-        answerEl = document.createElement("button")
-        answerEl.classList.add("my-2", "btn", "btn,lg", "btn-success")
-        answerEl.textContent = questionsAndAnswers[i].option3
-        spaceEl.appendChild(answerEl)
-        answerArea.appendChild(spaceEl)
-
-        spaceEl=document.createElement("div")
-        answerEl = document.createElement("button")
-        answerEl.classList.add("my-2", "btn", "btn,lg", "btn-success")
-        answerEl.textContent = questionsAndAnswers[i].option4
-        spaceEl.appendChild(answerEl)
-        answerArea.appendChild(spaceEl)
-
-    
-    
     }
 
-     
 }
 
 startEl.addEventListener("click", startQuiz)
