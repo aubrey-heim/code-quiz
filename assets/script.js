@@ -1,3 +1,5 @@
+var quizNavEl = document.getElementById("quiz-nav")
+var scoreNavEl = document.getElementById("score-nav")
 var timerEl = document.getElementById("timer")
 var startEl = document.getElementById("start-button")
 var mainEl = document.getElementById("welcome")
@@ -104,6 +106,10 @@ function startTime() {
     var timeInterval = setInterval(function() {
         timerEl.textContent = "0:" + timeLeft
         
+        scoreNavEl.addEventListener("click", function(){
+            clearInterval(timeInterval)
+        })
+
         if (timeLeft < 20) {
             timerEl.style.backgroundColor = "yellow"
             timer.style.color = "black"
@@ -118,7 +124,7 @@ function startTime() {
         if (timeLeft <= 0) {
           timerEl.textContent = "0:00";
           inputScore();
-          clearInterval(timeInterval);
+          clearInterval(timeInterval)
         }
         
         timeLeft--;
@@ -171,4 +177,17 @@ document.addEventListener("click", function(event){
         ans = event.target.getAttribute("id")
         answerCheck(ans)
     }
+})
+
+quizNavEl.addEventListener("click", function(){    
+    location.reload()
+})
+
+scoreNavEl.addEventListener("click", function(){
+        scoreList.classList.remove("hidden")
+        mainEl.classList.add("hidden")
+        quizEl.classList.add("hidden")
+        resultsEl.classList.add("hidden")
+        timerEl.textContent = "1:00"
+
 })
