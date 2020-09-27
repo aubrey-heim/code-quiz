@@ -26,7 +26,7 @@ var questionsAndAnswers = [
     "optionD": "<a>",
     "correct":  "D"},
     
-    {"question": "What special character should be used at the end of every statement?", 
+    {"question": "What special character should be used at the end of every statement in CSS and JavaScript?", 
     "optionA": "period", 
     "optionB": "semi-colon", 
     "optionC": "bracket", 
@@ -38,7 +38,49 @@ var questionsAndAnswers = [
     "optionB": "string", 
     "optionC": "integer", 
     "optionD": "char",
-    "correct":  "A" }
+    "correct":  "A" },
+
+    {"question": "What does CSS stand for? ", 
+    "optionA": "Cascading Style Sheets", 
+    "optionB": "Computer Style Status", 
+    "optionC": "Coding Starter Style", 
+    "optionD": "Current Style Status",
+    "correct":  "A" },
+
+    {"question": "What command do you use in the terminal to change directories?", 
+    "optionA": "change", 
+    "optionB": "switch", 
+    "optionC": "move", 
+    "optionD": "cd",
+    "correct":  "D" },
+
+    {"question": "How do you download updated content from a GitHub repository that is cloned on your device?", 
+    "optionA": "git update", 
+    "optionB": "git pull", 
+    "optionC": "git status", 
+    "optionD": "git new",
+    "correct":  "B" },
+
+    {"question": "Where in your HTML should you link your style sheet? ", 
+    "optionA": "<header>", 
+    "optionB": "<footer>", 
+    "optionC": "<head>", 
+    "optionD": "<body>",
+    "correct":  "C" },
+
+    {"question": "What tag is used to created a bulleted list?", 
+    "optionA": "<list>", 
+    "optionB": "<ul>", 
+    "optionC": "<li>", 
+    "optionD": "<ol>",
+    "correct":  "B" },
+
+    {"question": "What is an alt attribute on an image", 
+    "optionA": "tells screen readers what is in an image", 
+    "optionB": "text that takes the place of an image when it won't load", 
+    "optionC": "tells search engines what is in an image", 
+    "optionD": "all of the above",
+    "correct":  "D" }
 ]
     
 var timeLeft = 59;
@@ -101,7 +143,7 @@ function answerCheck(ans){
     }
     resultsEl.textContent = result
     questionNumber++
-    if(questionNumber<4){
+    if(questionNumber<questionsAndAnswers.length){
         askQuestion(questionNumber)
     } else {
         scoreReached = parseInt(scoreReached) + parseInt(timeLeft)
