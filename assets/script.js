@@ -100,7 +100,12 @@ var scoreReached = 0;
 var questionNumber = 0;
 var recordedScores = []
 
+if (retreivedScores){
 showScores()
+} else {
+    retreivedScores = []
+}
+
 
 function startQuiz() {
     startTime()     
