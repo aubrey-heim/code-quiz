@@ -9,6 +9,8 @@ var optionAEl = document.getElementById("A")
 var optionBEl = document.getElementById("B")
 var optionCEl = document.getElementById("C")
 var optionDEl = document.getElementById("D")
+var scoreFormEl = document.getElementById("score-form")
+var scoreResultEl = document.getElementById("score-result")
 var questionEl = quizEl.children[0]
 
 var questionsAndAnswers = [
@@ -133,12 +135,12 @@ function askQuestion(x){
     
 function answerCheck(ans){
     if(ans===questionsAndAnswers[questionNumber].correct) {
-        var result = "Correct!"
+        var result = "correct!"
         scoreReached = parseInt(scoreReached) + 10
         scoreEl.textContent = "Score: " + scoreReached
         resultsEl.style.color = "green"
     }else {
-        var result = "Incorrect!"
+        var result = "incorrect!"
         timeLeft = timeLeft -5
         resultsEl.style.color = "red"
     }
@@ -154,14 +156,14 @@ function answerCheck(ans){
 }
 
 function inputScore() {
-    window.location.href="scores.html"
-    alert("Your score was " + scoreReached + "!")
-    var initials = prompt("Enter your initials")
-    var scoreListing = document.createElement("li")
-    scoreListing.textContent = "Initials:" + initials + "--- Score:" + scoreReached
-    scoreList.appendChild(scoreListing)
-    localStorage.setItem("initials", initials)
-    localStorage.setItem("score", scoreReached)    
+    scoreFormEl.classList.remove("hidden")
+    scoreList.classList.remove("hidden")
+    quizEl.classList.add("hidden")
+    scoreResultEl.textContent = "You scored " + scoreReached + " points!"
+}
+
+function captureInitials(){
+
 }
 
 document.addEventListener("click", function(event){
