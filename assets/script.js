@@ -54,7 +54,6 @@ function startQuiz() {
     mainEl.classList.add("hidden")
     quizEl.classList.remove("hidden")
     askQuestion(questionNumber)
-    askQuestion(questionNumber)
 }
 
 function startTime() {
@@ -87,19 +86,27 @@ function askQuestion(x){
     optionAEl.textContent = questionsAndAnswers[x].optionA
     optionBEl.textContent = questionsAndAnswers[x].optionB
     optionCEl.textContent = questionsAndAnswers[x].optionC
-    optionDEl.textContent = questionsAndAnswers[x].optionD    
+    optionDEl.textContent = questionsAndAnswers[x].optionD   
 }
     
 function answerCheck(ans){
     if(ans===questionsAndAnswers[questionNumber].correct) {
         var result = "Correct!"
         scoreReached = parseInt(scoreReached) + 10
+        scoreEl.textContent = "Score: " + scoreReached
     }else {
         var result = "Incorrect!"
         timeLeft = timeLeft -5
     }
     resultsEl.textContent = result
     questionNumber++
+    if(questionNumber<4){
+        askQuestion(questionNumber)
+    } else {
+        scoreReached = parseInt(scoreReached) + parseInt(timeLeft)
+        inputScore()
+    }
+    
 }
 
 function inputScore() {
@@ -112,8 +119,6 @@ function inputScore() {
     localStorage.setItem("initials", initials)
     localStorage.setItem("score", scoreReached)    
 }
-
-
 
 document.addEventListener("click", function(event){
     if(event.target.matches(".answer-button")){
