@@ -190,5 +190,6 @@ scoreNavEl.addEventListener("click", function(){
         quizEl.classList.add("hidden")
         resultsEl.classList.add("hidden")
         timerEl.textContent = "1:00"
+        scoreEl.textContent = "Score"
 
 })
