@@ -7,6 +7,7 @@ var quizEl = document.getElementById("quiz")
 var scoreEl = document.getElementById("score")
 var resultsEl = document.getElementById("results")
 var scoreList = document.getElementById("score-list")
+var scoreListItemEl = document.getElementById("score-list-items")
 var optionAEl = document.getElementById("A")
 var optionBEl = document.getElementById("B")
 var optionCEl = document.getElementById("C")
@@ -89,11 +90,17 @@ var questionsAndAnswers = [
     "optionD": "all of the above",
     "correct":  "D" }
 ]
-    
+
+var retreivedScores = JSON.parse(localStorage.getItem("recordedScores"));
+
+console.log(retreivedScores)
+
 var timeLeft = 59;
 var scoreReached = 0;
 var questionNumber = 0;
 var recordedScores = []
+
+showScores()
 
 function startQuiz() {
     startTime()     
@@ -184,7 +191,7 @@ submitButtonEl.addEventListener("click", function(event){
     event.preventDefault()
     
     var score = {
-        initials: initialsInput.value.trim(),
+        initials: initialsInput.value.trim().toUpperCase(),
         scoreRecorded: scoreReached
     }
     
@@ -194,14 +201,25 @@ submitButtonEl.addEventListener("click", function(event){
     } else {
         resultsEl.textContent = "Thank you for submitting your high score!"
         resultsEl.style.color = "green"
-        recordedScores.push(score)
+        retreivedScores.push(score)
     }
 
-    console.log(recordedScores)
-    
-    localStorage.setItem("recordedScores", JSON.stringify(recordedScores));
-
+    localStorage.setItem("recordedScores", JSON.stringify(retreivedScores));
+    scoreListItemEl.innerHTML = ""
+    showScores()
+    scoreFormEl.classList.add("hidden")
 })
+
+function showScores() {
+    for(var i=0; i<retreivedScores.length; i++) {
+        var oldScore = document.createElement("li")
+        var initialsShown = retreivedScores[i].initials
+        var scoreShown = retreivedScores[i].scoreRecorded
+        oldScore.textContent = "Initials: " + initialsShown + " --- Score: " + scoreShown
+        scoreListItemEl.appendChild(oldScore)
+    }
+}
+
 
 quizNavEl.addEventListener("click", function(){    
     location.reload()
@@ -213,5 +231,7 @@ scoreNavEl.addEventListener("click", function(){
         quizEl.classList.add("hidden")
         resultsEl.classList.add("hidden")
         timerEl.textContent = "1:00"
+        timerEl.style.backgroundColor = "#27a844"
+        timerEl.style.color = "white"
         scoreEl.textContent = "Score"
 })
