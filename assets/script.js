@@ -1,7 +1,10 @@
 var timerEl = document.getElementById("timer")
 var startEl = document.getElementById("start-button")
 var mainEl = document.querySelector("main")
+var quizEl = document.getElementById("quiz")
 var scoreEl = document.getElementById("score")
+var buttonListEl = document.getElementById("button-list")
+var resultsEl = document.getElementById("results")
 
 var questionsAndAnswers = [
     {"question": "What is Lorem Ipsum?", 
@@ -63,41 +66,51 @@ function startTime() {
     }, 1000);
 }
 
+startEl.addEventListener("click", startQuiz)
+
 function startQuiz() {
     startTime()     
     scoreEl.textContent = "Score: " + scoreReached
+    
+    var i=0
+    while (i<questionsAndAnswers.length){
 
-    for (var i=0; i<questionsAndAnswers.length; i++){
-
-        mainEl.children[0].textContent = "Question " + i+1
-        mainEl.children[1].textContent = questionsAndAnswers[i].question
-        let answerArea = mainEl.children[2]
-        answerArea.textContent = ""
-        var correctAnswer = questionsAndAnswers[i].correct
-        
-           var answers = Object.values(questionsAndAnswers[0])
+        mainEl.innerHTML=""
+        quizEl.children[0].textContent = questionsAndAnswers[i].question
+        let answers = Object.values(questionsAndAnswers[i])
            
-            for (var j=1; j<5;j++){
-                answerEl = document.createElement("button")
-                answerEl.style.boxDecorationBreak
-                answerEl.classList.add("mx-2", "btn", "btn,lg", "btn-success", "answer-button")
-                answerEl.textContent = answers[j]
-                answerArea.appendChild(answerEl)
-            }
+        for (var j=1; j<5; j++){
+            answerEl = document.createElement("button")
+            answerEl.classList.add("mx-2", "btn", "btn,lg", "btn-success", "answer-button")
+            answerEl.setAttribute("question-number", i)
+            answerEl.textContent = answers[j]
+            buttonListEl.appendChild(answerEl)
+        }
 
-        document.addEventListener("click", function(event){
+        quizEl.addEventListener("click", function(event){
+            questionNumber = event.target.getAttribute("question-number")
+            console.log(questionNumber)
+            let answers = Object.values(questionsAndAnswers[i])
+            let correctAnswer= answers.correct
+            console.log(correctAnswer)
             if (event.target.matches(".answer-button") && event.target.textContent === correctAnswer){
                 event.preventDefault
-                alert("Correct!")
+                var result = "Correct!"
+                resultsEl.textContent = result
+                scoreReached = parseInt(scoreReached) + 10
             } else if (event.target.matches(".answer-button")){
                 event.preventDefault
-                alert("Incorrect!")
+                var result = "Incorrect!"
                 timeLeft = timeLeft - 5
+                resultsEl.textContent = result
+            } else {
+                var result = ""
             }
         })
 
+        if (result !== "") {
+            i++
+        }
+    
     }
-
 }
-
-startEl.addEventListener("click", startQuiz)
