@@ -58,7 +58,7 @@ function startTime() {
 
         if (timeLeft <= 0) {
           timerEl.textContent = "0:00";
-        //   inputScore();
+          inputScore();
           clearInterval(timeInterval);
         }
         
@@ -113,4 +113,12 @@ function startQuiz() {
         }
     
     }
+}
+
+function inputScore() {
+    alert("Your score was " + scoreReached + "!")
+    var initials = prompt("Enter your initials")
+    localStorage.setItem("initials", initials)
+    localStorage.setItem("score", scoreReached)
+    window.location.href="scores.html"
 }
