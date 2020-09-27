@@ -119,10 +119,10 @@ function startQuiz() {
 function startTime() {
     var timeInterval = setInterval(function() {
         timerEl.textContent = "0:" + timeLeft
-        
-        scoreNavEl.addEventListener("click", function(){
+
+        if (scoreList.getAttribute("class") !== "text-center hidden") {
             clearInterval(timeInterval)
-        })
+        }
 
         if (timeLeft < 20) {
             timerEl.style.backgroundColor = "yellow"
