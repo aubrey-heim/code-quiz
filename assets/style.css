@@ -1,3 +1,7 @@
 .hidden {
     display: none;
 }
+
+#results {
+    font-size: 50px;
+}

@@ -3,7 +3,6 @@ var startEl = document.getElementById("start-button")
 var mainEl = document.querySelector("main")
 var quizEl = document.getElementById("quiz")
 var scoreEl = document.getElementById("score")
-var buttonListEl = document.getElementById("button-list")
 var resultsEl = document.getElementById("results")
 var scoreList = document.getElementById("score-list")
 var optionAEl = document.getElementById("A")
@@ -94,9 +93,11 @@ function answerCheck(ans){
         var result = "Correct!"
         scoreReached = parseInt(scoreReached) + 10
         scoreEl.textContent = "Score: " + scoreReached
+        resultsEl.style.color = "green"
     }else {
         var result = "Incorrect!"
         timeLeft = timeLeft -5
+        resultsEl.style.color = "red"
     }
     resultsEl.textContent = result
     questionNumber++
@@ -105,8 +106,7 @@ function answerCheck(ans){
     } else {
         scoreReached = parseInt(scoreReached) + parseInt(timeLeft)
         inputScore()
-    }
-    
+    } 
 }
 
 function inputScore() {
