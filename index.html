@@ -32,18 +32,18 @@
           <p>If you get the answer right, you will be awarded 10 points.</p>
           <p>If you get the answer wrong, 5 seconds will be subtracted from your timer.</p>
           <p>Once all of the questions are answered, you will get one bonus point for each second remaining on your timer.</p>
-          <button type="button" id="start-button" class="btn btn-outline-success btn-lg mt-5">Start Quiz</button>
+          <button type="button" id="start-button" class="btn btn-success btn-lg mt-5">Start Quiz</button>
         </div>
       </main>
       <div id="quiz" class="text-center hidden">
         <h1></h1>
-        <div id="button-list" class="my-5"></div>
-        <button class="mx-2 btn btn-lg btn-success answer-button" id="A">A</button>
-        <button class="mx-2 btn btn-lg btn-success answer-button" id="B">B</button>
-        <button class="mx-2 btn btn-lg btn-success answer-button" id="C">C</button>
-        <button class="mx-2 btn btn-lg btn-success answer-button" id="D">D</button>
+        <div id="button-list"></div>
+          <div class="my-4"><button class="mx-2 btn btn-lg btn-success answer-button" id="A">A</button></div>
+          <div class="my-4"><button class="mx-2 btn btn-lg btn-success answer-button" id="B">B</button></div>
+          <div class="my-4"><button class="mx-2 btn btn-lg btn-success answer-button" id="C">C</button></div>
+          <div class="my-4"><button class="mx-2 btn btn-lg btn-success answer-button" id="D">D</button></div>
       </div>
-      <div id="results" class="text-center my-5"></div>
+      <div id="results" class="text-center hidden"></div>
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

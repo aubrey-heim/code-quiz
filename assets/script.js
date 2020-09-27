@@ -94,6 +94,7 @@ function startQuiz() {
     scoreEl.textContent = "Score: " + scoreReached
     mainEl.classList.add("hidden")
     quizEl.classList.remove("hidden")
+    resultsEl.classList.remove("hidden")
     askQuestion(questionNumber)
 }
 
@@ -141,7 +142,8 @@ function answerCheck(ans){
         timeLeft = timeLeft -5
         resultsEl.style.color = "red"
     }
-    resultsEl.textContent = result
+    let resultText = "You got question #" + (questionNumber+1) + " " + result
+    resultsEl.textContent = resultText
     questionNumber++
     if(questionNumber<questionsAndAnswers.length){
         askQuestion(questionNumber)
