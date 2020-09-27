@@ -166,6 +166,7 @@ function inputScore() {
     scoreList.classList.remove("hidden")
     quizEl.classList.add("hidden")
     scoreResultEl.textContent = "You scored " + scoreReached + " points!"
+    scoreEl.textContent = "Score: " + scoreReached
 }
 
 function captureInitials(){
