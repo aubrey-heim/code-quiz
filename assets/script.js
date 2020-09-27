@@ -1,6 +1,6 @@
 var timerEl = document.getElementById("timer")
 var startEl = document.getElementById("start-button")
-var mainEl = document.querySelector("main")
+var mainEl = document.getElementById("welcome")
 var quizEl = document.getElementById("quiz")
 var scoreEl = document.getElementById("score")
 var resultsEl = document.getElementById("results")
