@@ -221,6 +221,9 @@ function showScores() {
         var initialsShown = retreivedScores[i].initials
         var scoreShown = retreivedScores[i].scoreRecorded
         oldScore.textContent = "Initials: " + initialsShown + " --- Score: " + scoreShown
+        oldScore.classList.add("list-group-item","list-group-item-secondary")
+        oldScore.style.fontSize = "30px"
+        oldScore.style.color = "green"
         scoreListItemEl.appendChild(oldScore)
     }
 }
