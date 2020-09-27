@@ -13,7 +13,10 @@ var optionCEl = document.getElementById("C")
 var optionDEl = document.getElementById("D")
 var scoreFormEl = document.getElementById("score-form")
 var scoreResultEl = document.getElementById("score-result")
+var submitButtonEl = document.getElementById("submit")
+var initialsInput = document.getElementById("initials")
 var questionEl = quizEl.children[0]
+
 
 var questionsAndAnswers = [
     {"question": "What is Lorem Ipsum?", 
@@ -90,8 +93,7 @@ var questionsAndAnswers = [
 var timeLeft = 59;
 var scoreReached = 0;
 var questionNumber = 0;
-
-startEl.addEventListener("click", startQuiz)
+var recordedScores = []
 
 function startQuiz() {
     startTime()     
@@ -169,15 +171,36 @@ function inputScore() {
     scoreEl.textContent = "Score: " + scoreReached
 }
 
-function captureInitials(){
-
-}
+startEl.addEventListener("click", startQuiz)
 
 document.addEventListener("click", function(event){
     if(event.target.matches(".answer-button")){
         ans = event.target.getAttribute("id")
         answerCheck(ans)
     }
+})
+
+submitButtonEl.addEventListener("click", function(event){
+    event.preventDefault()
+    
+    var score = {
+        initials: initialsInput.value.trim(),
+        scoreRecorded: scoreReached
+    }
+    
+    if (score.initials === "") {
+        resultsEl.textContent = "Initials cannot be blank."
+        resultsEl.style.color = "red"
+    } else {
+        resultsEl.textContent = "Thank you for submitting your high score!"
+        resultsEl.style.color = "green"
+        recordedScores.push(score)
+    }
+
+    console.log(recordedScores)
+    
+    localStorage.setItem("recordedScores", JSON.stringify(recordedScores));
+
 })
 
 quizNavEl.addEventListener("click", function(){    
@@ -191,5 +214,4 @@ scoreNavEl.addEventListener("click", function(){
         resultsEl.classList.add("hidden")
         timerEl.textContent = "1:00"
         scoreEl.textContent = "Score"
-
 })
