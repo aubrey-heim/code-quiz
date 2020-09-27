@@ -6,41 +6,56 @@ var scoreEl = document.getElementById("score")
 var buttonListEl = document.getElementById("button-list")
 var resultsEl = document.getElementById("results")
 var scoreList = document.getElementById("score-list")
+var optionAEl = document.getElementById("A")
+var optionBEl = document.getElementById("B")
+var optionCEl = document.getElementById("C")
+var optionDEl = document.getElementById("D")
+var questionEl = quizEl.children[0]
 
 var questionsAndAnswers = [
     {"question": "What is Lorem Ipsum?", 
-    "option1": "A coding language", 
-    "option2": "A coding accreditation ", 
-    "option3": "A traditional placeholder text", 
-    "option4": "A well-known coding university",
-    "correct": "A traditional placeholder text" },
+    "optionA": "A coding language", 
+    "optionB": "A coding accreditation ", 
+    "optionC": "A traditional placeholder text", 
+    "optionD": "A well-known coding university",
+    "correct":  "C"},
     
     {"question": "What tag is used for a hyperlink?", 
-    "option1": "<link>", 
-    "option2": "<ul>", 
-    "option3": "<p>", 
-    "option4": "<a>",
-    "correct": "<a>" },
+    "optionA": "<link>", 
+    "optionB": "<ul>", 
+    "optionC": "<p>", 
+    "optionD": "<a>",
+    "correct":  "D"},
     
     {"question": "What special character should be used at the end of every statement?", 
-    "option1": "period", 
-    "option2": "semi-colon", 
-    "option3": "bracket", 
-    "option4": "colon",
-    "correct": "semi-colon" },
+    "optionA": "period", 
+    "optionB": "semi-colon", 
+    "optionC": "bracket", 
+    "optionD": "colon",
+    "correct":  "B" },
     
     {"question": "What data type stores true or false values? ", 
-    "option1": "boolean", 
-    "option2": "string", 
-    "option3": "integer", 
-    "option4": "char",
-    "correct": "boolean" }
+    "optionA": "boolean", 
+    "optionB": "string", 
+    "optionC": "integer", 
+    "optionD": "char",
+    "correct":  "A" }
 ]
     
-
-
 var timeLeft = 59;
 var scoreReached = 0;
+var questionNumber = 0;
+
+startEl.addEventListener("click", startQuiz)
+
+function startQuiz() {
+    startTime()     
+    scoreEl.textContent = "Score: " + scoreReached
+    mainEl.classList.add("hidden")
+    quizEl.classList.remove("hidden")
+    askQuestion(questionNumber)
+    askQuestion(questionNumber)
+}
 
 function startTime() {
     var timeInterval = setInterval(function() {
@@ -67,53 +82,24 @@ function startTime() {
     }, 1000);
 }
 
-startEl.addEventListener("click", startQuiz)
-
-function startQuiz() {
-    startTime()     
-    scoreEl.textContent = "Score: " + scoreReached
+function askQuestion(x){
+    questionEl.textContent = questionsAndAnswers[x].question
+    optionAEl.textContent = questionsAndAnswers[x].optionA
+    optionBEl.textContent = questionsAndAnswers[x].optionB
+    optionCEl.textContent = questionsAndAnswers[x].optionC
+    optionDEl.textContent = questionsAndAnswers[x].optionD    
+}
     
-    var i=0
-    while (i<questionsAndAnswers.length){
-
-        mainEl.innerHTML=""
-        quizEl.children[0].textContent = questionsAndAnswers[i].question
-        let answers = Object.values(questionsAndAnswers[i])
-           
-        for (var j=1; j<5; j++){
-            answerEl = document.createElement("button")
-            answerEl.classList.add("mx-2", "btn", "btn,lg", "btn-success", "answer-button")
-            answerEl.setAttribute("question-number", i)
-            answerEl.textContent = answers[j]
-            buttonListEl.appendChild(answerEl)
-        }
-
-        quizEl.addEventListener("click", function(event){
-            questionNumber = event.target.getAttribute("question-number")
-            console.log(questionNumber)
-            let answers = Object.values(questionsAndAnswers[i])
-            let correctAnswer= answers.correct
-            console.log(correctAnswer)
-            if (event.target.matches(".answer-button") && event.target.textContent === correctAnswer){
-                event.preventDefault
-                var result = "Correct!"
-                resultsEl.textContent = result
-                scoreReached = parseInt(scoreReached) + 10
-            } else if (event.target.matches(".answer-button")){
-                event.preventDefault
-                var result = "Incorrect!"
-                timeLeft = timeLeft - 5
-                resultsEl.textContent = result
-            } else {
-                var result = ""
-            }
-        })
-
-        if (result !== "") {
-            i++
-        }
-    
+function answerCheck(ans){
+    if(ans===questionsAndAnswers[questionNumber].correct) {
+        var result = "Correct!"
+        scoreReached = parseInt(scoreReached) + 10
+    }else {
+        var result = "Incorrect!"
+        timeLeft = timeLeft -5
     }
+    resultsEl.textContent = result
+    questionNumber++
 }
 
 function inputScore() {
@@ -124,6 +110,14 @@ function inputScore() {
     scoreListing.textContent = "Initials:" + initials + "--- Score:" + scoreReached
     scoreList.appendChild(scoreListing)
     localStorage.setItem("initials", initials)
-    localStorage.setItem("score", scoreReached)
-    
+    localStorage.setItem("score", scoreReached)    
 }
+
+
+
+document.addEventListener("click", function(event){
+    if(event.target.matches(".answer-button")){
+        ans = event.target.getAttribute("id")
+        answerCheck(ans)
+    }
+})
