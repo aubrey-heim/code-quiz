@@ -1,15 +1,14 @@
+/* hides elements marked with the "hidden" class */
 .hidden {
     display: none;
 }
 
-.shown {
-    display: block;
-}
-
+/* Sets the font size of the results shown at the bottom of the screen */
 #results {
     font-size: 20px;
 }
 
+/* Gives the page a grey background */
 body {
     background-color: #8e948f;
 }
