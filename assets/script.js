@@ -5,6 +5,7 @@ var quizEl = document.getElementById("quiz")
 var scoreEl = document.getElementById("score")
 var buttonListEl = document.getElementById("button-list")
 var resultsEl = document.getElementById("results")
+var scoreList = document.getElementById("score-list")
 
 var questionsAndAnswers = [
     {"question": "What is Lorem Ipsum?", 
@@ -116,9 +117,13 @@ function startQuiz() {
 }
 
 function inputScore() {
+    window.location.href="scores.html"
     alert("Your score was " + scoreReached + "!")
     var initials = prompt("Enter your initials")
+    var scoreListing = document.createElement("li")
+    scoreListing.textContent = "Initials:" + initials + "--- Score:" + scoreReached
+    scoreList.appendChild(scoreListing)
     localStorage.setItem("initials", initials)
     localStorage.setItem("score", scoreReached)
-    window.location.href="scores.html"
+    
 }
