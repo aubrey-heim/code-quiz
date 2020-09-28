@@ -17,7 +17,9 @@ var scoreFormEl = document.getElementById("score-form")
 var scoreResultEl = document.getElementById("score-result")
 var submitButtonEl = document.getElementById("submit")
 var initialsInput = document.getElementById("initials")
+var socreButtonsEl = document.getElementById("score-buttons")
 var againButtonEl = document.getElementById("again-button")
+var clearButtonEl = document.getElementById("clear-button")
 var questionEl = quizEl.children[0]
 
 //array of questions and answers
@@ -232,8 +234,8 @@ function inputScore() {
     scoreFormEl.classList.remove("hidden")
     //shows list of high scores
     scoreList.classList.remove("hidden")
-    //shows try again button
-    againButtonEl.classList.remove("hidden")
+    //shows try again and clear button
+    socreButtonsEl.classList.remove("hidden")
     //hides quiz
     quizEl.classList.add("hidden")
     //notifies user of their final score
@@ -340,4 +342,16 @@ scoreNavEl.addEventListener("click", function(){
 againButtonEl.addEventListener("click", function(){
     //reloads the page and resets changed values
     location.reload()
+})
+
+//listens for clicks on the clear button and clears the high score list
+clearButtonEl.addEventListener("click", function(){
+    //clears the local storage
+    localStorage.clear()
+    //empties the array of scores
+    retreivedScores = []
+    //empties the contents of the list
+    scoreListItemEl.innerHTML = ""
+    //shows updated list
+    showScores()
 })
