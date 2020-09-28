@@ -17,6 +17,7 @@ var scoreFormEl = document.getElementById("score-form")
 var scoreResultEl = document.getElementById("score-result")
 var submitButtonEl = document.getElementById("submit")
 var initialsInput = document.getElementById("initials")
+var againButtonEl = document.getElementById("again-button")
 var questionEl = quizEl.children[0]
 
 //array of questions and answers
@@ -151,11 +152,6 @@ function startTime() {
         //stopping the timer if we are on the score page
         if (scoreList.getAttribute("class") !== "text-center hidden") {
             clearInterval(timeInterval)
-            //resets timer style on highscore page
-            timerEl.style.backgroundColor = "#27a844"
-            timerEl.style.color = "white"
-            timerEl.textContent = "1:00"
-            //resets timer style on highscore page^^
         }
         //changing timer color based on time left
         if (timeLeft < 20) {
@@ -236,6 +232,8 @@ function inputScore() {
     scoreFormEl.classList.remove("hidden")
     //shows list of high scores
     scoreList.classList.remove("hidden")
+    //shows try again button
+    againButtonEl.classList.remove("hidden")
     //hides quiz
     quizEl.classList.add("hidden")
     //notifies user of their final score
@@ -336,4 +334,10 @@ scoreNavEl.addEventListener("click", function(){
         timerEl.textContent = "1:00"
         //resets timer style on highscore page^^
         
+})
+
+//listens for clicks on the try again button and relaunches the quiz
+againButtonEl.addEventListener("click", function(){
+    //reloads the page and resets changed values
+    location.reload()
 })
