@@ -13,6 +13,7 @@
 * [Accessing the Project](#accessing-the-project)
 * [Acknowledgments](#acknowledgments)
 * [License](#license)
+* [Contact](#contact)
   
 ## About the Project
 This project is the fourth homework assignment of the UW Coding Bootcamp. For this project I was asked to create a timed quiz for a coding student. I was given a set of acceptance criteria, as well as a gif of an example quiz (included below). I was asked to have a similar functionality to the example, but was able to create my own style and rules for the quiz.
@@ -75,3 +76,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## Contact
+Aubrey Heim
+GitHub: https://github.com/aubrey-heim
+LinkedIn: https://www.linkedin.com/mynetwork/
+Portfolio: https://github.com/aubrey-heim/responsive-portfolio
